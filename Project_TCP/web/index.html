@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="login-screen" class="screen active">
+            <div class="container">
+                <h1>🎮 TCP Quiz Game</h1>
+                <p>Test your networking knowledge!</p>
+                <input type="text" id="username-input" placeholder="Enter your username" maxlength="20">
+                <button id="join-btn" class="btn-primary">Join Game</button>
+                <div id="connection-status"></div>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="header">
+                <div class="player-info">
+                    <span id="player-name"></span>
+                    <span id="player-score">Score: 0</span>
+                </div>
+            </div>
+
+            <div class="container">
+                <div id="waiting-room">
+                    <h2>⏳ Waiting for game to start...</h2>
+                    <p>Get ready!</p>
+                </div>
+
+                <div id="question-area" style="display: none;">
+                    <div class="question-header">
+                        <span id="question-number"></span>
+                        <span id="timer">30s</span>
+                    </div>
+                    <h2 id="question-text"></h2>
+                    <div id="options"></div>
+                    <div id="result-message"></div>
+                </div>
+
+                <div id="leaderboard" style="display: none;">
+                    <h3>🏆 Top 3 Players</h3>
+                    <div id="leaderboard-list"></div>
+                </div>
+
+                <div id="wait-screen" style="display: none;">
+                    <h2>⏳ Please wait for the next question</h2>
+                    <div class="wait-stats">
+                        <div><strong>Your rank:</strong> <span id="wait-rank">-</span></div>
+                        <div><strong>Points this question:</strong> <span id="wait-last-points">0</span></div>
+                        <div><strong>Total points:</strong> <span id="wait-total">0</span></div>
+                    </div>
+                    <p>The host will type <code>next</code> to continue.</p>
+                </div>
+
+                <div id="final-results" style="display: none;">
+                    <h2>🎉 Game Over!</h2>
+                    <div id="winner-announcement"></div>
+                    <h3>Final Standings</h3>
+                    <div id="final-leaderboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

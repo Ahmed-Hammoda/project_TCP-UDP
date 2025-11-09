@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "text": "What does TCP stand for?",
+        "options": ["A) Transfer Control Protocol", "B) Transmission Control Protocol", "C) Transport Communication Protocol", "D) Technical Computer Protocol"],
+        "correct": "B"
+    },
+    {
+        "id": 2,
+        "text": "Which layer of OSI model does TCP operate?",
+        "options": ["A) Physical", "B) Network", "C) Transport", "D) Application"],
+        "correct": "C"
+    },
+    {
+        "id": 3,
+        "text": "What is the maximum size of TCP header?",
+        "options": ["A) 20 bytes", "B) 40 bytes", "C) 60 bytes", "D) 80 bytes"],
+        "correct": "C"
+    },
+    {
+        "id": 4,
+        "text": "TCP is a _____ protocol",
+        "options": ["A) Connectionless", "B) Connection-oriented", "C) Stateless", "D) Unreliable"],
+        "correct": "B"
+    },
+    {
+        "id": 5,
+        "text": "Which algorithm does TCP use for congestion control?",
+        "options": ["A) Dijkstra", "B) Bellman-Ford", "C) Slow Start", "D) Quick Sort"],
+        "correct": "C"
+    },
+    {
+        "id": 6,
+        "text": "What is the default TCP window size?",
+        "options": ["A) 32 KB", "B) 64 KB", "C) 128 KB", "D) 256 KB"],
+        "correct": "B"
+    },
+    {
+        "id": 7,
+        "text": "TCP uses _____ to ensure reliable delivery",
+        "options": ["A) Acknowledgments", "B) Broadcasts", "C) Multicasts", "D) Floods"],
+        "correct": "A"
+    },
+    {
+        "id": 8,
+        "text": "What is the three-way handshake?",
+        "options": ["A) SYN, ACK, FIN", "B) SYN, SYN-ACK, ACK", "C) ACK, SYN, FIN", "D) FIN, ACK, SYN"],
+        "correct": "B"
+    },
+    {
+        "id": 9,
+        "text": "Which port number range is for well-known services?",
+        "options": ["A) 0-1023", "B) 1024-49151", "C) 49152-65535", "D) All of above"],
+        "correct": "A"
+    },
+    {
+        "id": 10,
+        "text": "TCP provides _____ delivery of data",
+        "options": ["A) Ordered", "B) Unordered", "C) Random", "D) Partial"],
+        "correct": "A"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "text": "What does TCP stand for?",
+        "options": ["A) Transfer Control Protocol", "B) Transmission Control Protocol", "C) Transport Communication Protocol", "D) Technical Computer Protocol"],
+        "correct": "B"
+    },
+    {
+        "id": 2,
+        "text": "Which layer of OSI model does TCP operate?",
+        "options": ["A) Physical", "B) Network", "C) Transport", "D) Application"],
+        "correct": "C"
+    },
+    {
+        "id": 3,
+        "text": "What is the maximum size of TCP header?",
+        "options": ["A) 20 bytes", "B) 40 bytes", "C) 60 bytes", "D) 80 bytes"],
+        "correct": "C"
+    },
+    {
+        "id": 4,
+        "text": "TCP is a _____ protocol",
+        "options": ["A) Connectionless", "B) Connection-oriented", "C) Stateless", "D) Unreliable"],
+        "correct": "B"
+    },
+    {
+        "id": 5,
+        "text": "Which algorithm does TCP use for congestion control?",
+        "options": ["A) Dijkstra", "B) Bellman-Ford", "C) Slow Start", "D) Quick Sort"],
+        "correct": "C"
+    }
+]

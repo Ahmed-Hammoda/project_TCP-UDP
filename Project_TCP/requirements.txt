@@ -1,0 +1,18 @@
+# Python dependencies for TCP Quiz Game
+# Note: All required modules are part of Python's standard library
+# No external packages needed!
+
+# Standard library modules used:
+# - socket
+# - threading
+# - json
+# - time
+# - typing
+# - http.server
+# - socketserver
+# - urllib.parse
+
+# If you want to extend this project, you might add:
+# flask>=2.0.0  # For more advanced web framework
+# websockets>=10.0  # For WebSocket support
+# pytest>=7.0.0  # For testing
