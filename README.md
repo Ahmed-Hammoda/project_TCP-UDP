@@ -95,7 +95,7 @@ The browser never speaks raw TCP. Instead, the **client bridge** maintains the T
 │ • Address→player map  │◄─────┤   Terminal Client │  • Listener thread │
 │ • Heartbeat ping/pong │      │   client_udp.py   │  • Timed input     │
 │ • Inactivity cleanup  │      └───────────────────┘                    │
-│ • Best-effort delivery│                          └────────────────────┘                      
+│ • Best-effort delivery│                          └────────────────────┘
 └───────────────────────┘                                               
 ```
 
