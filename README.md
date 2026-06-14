@@ -12,7 +12,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project implements a **real-time, multiplayer quiz game** where several players connect to a central server, answer timed networking questions, and compete on a live leaderboard. The twist: the **same game logic is built on two different transport protocols** so their behavior can be compared directly.
 
@@ -27,7 +27,7 @@ This was developed as the **CS411 – Computer Networks** lab project (Lab 4) at
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Two complete transport-layer implementations** of the same game (TCP + UDP) for direct comparison.
 - **Multi-threaded TCP server** handling many concurrent players with a dedicated thread per connection.
@@ -42,7 +42,7 @@ This was developed as the **CS411 – Computer Networks** lab project (Lab 4) at
 
 ---
 
-## 🧠 Why This Project Matters (Skills Demonstrated)
+## Why This Project Matters (Skills Demonstrated)
 
 This project goes beyond using a web framework — it implements the networking layer by hand, which demonstrates:
 
@@ -56,13 +56,13 @@ This project goes beyond using a web framework — it implements the networking 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### TCP Architecture (web client)
 
 ```
-┌──────────────────────┐      TCP socket (port 8888)      ┌──────────────────────┐
-│   TCP Game Server     │◄────────────────────────────────►│    Client Bridge      │
+┌───────────────────────┐      TCP socket (port 8888)       ┌───────────────────────┐
+│   TCP Game Server     │◄────────────────────────────────► │    Client Bridge      │
 │   server_tcp.py       │   newline-delimited JSON stream   │    client_tcp.py      │
 │                       │                                   │                       │
 │ • Thread-per-client   │                                   │ • TCP socket client   │
@@ -70,10 +70,10 @@ This project goes beyond using a web framework — it implements the networking 
 │ • Scoring engine      │                                   │ • Async message queue │
 │ • Leaderboards        │                                   │                       │
 │ • Lock-guarded state  │                                   └───────────▲───────────┘
-└──────────────────────┘                                               │
+└──────────────────────┘                                                │
                                                               HTTP / JSON (port 8000)
                                                                         │
-                                                            ┌───────────┴───────────┐
+                                                            ┌───────────┴────────────┐
                                                             │     Web Interface      │
                                                             │  index.html / JS / CSS │
                                                             │  • Polls for messages  │
@@ -87,23 +87,23 @@ The browser never speaks raw TCP. Instead, the **client bridge** maintains the T
 ### UDP Architecture (terminal clients)
 
 ```
-┌──────────────────────┐                          ┌────────────────────┐
+┌───────────────────────┐                          ┌────────────────────┐
 │   UDP Game Server     │   UDP datagrams (8888)   │   Terminal Client  │
 │   server_udp.py       │◄────────────────────────►│   client_udp.py    │
 │                       │                          │                    │
 │ • Single UDP socket   │      ┌───────────────────┤  • Direct UDP I/O  │
-│ • Address→player map   │◄─────┤   Terminal Client │  • Listener thread │
+│ • Address→player map  │◄─────┤   Terminal Client │  • Listener thread │
 │ • Heartbeat ping/pong │      │   client_udp.py   │  • Timed input     │
-│ • Inactivity cleanup  │      └────────────────────┘                   │
-│ • Best-effort delivery│                                               │
-└──────────────────────┘                                               │
+│ • Inactivity cleanup  │      └───────────────────┘                    │
+│ • Best-effort delivery│                          └────────────────────┘                      
+└───────────────────────┘                                               
 ```
 
 One socket multiplexes *all* clients; the server distinguishes players by their `(IP, port)` source address rather than by a persistent connection.
 
 ---
 
-## ⚖️ TCP vs. UDP — The Core Comparison
+## TCP vs. UDP — The Core Comparison
 
 The whole point of building it twice was to feel the differences in practice:
 
@@ -122,7 +122,7 @@ The whole point of building it twice was to feel the differences in practice:
 
 ---
 
-## 🧮 Scoring & Game Flow
+## Scoring & Game Flow
 
 **Scoring formula** (identical across both protocols):
 
@@ -175,7 +175,7 @@ Messages are JSON objects. Over TCP they are newline-framed on the stream; over 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language:** Python 3.7+
 - **Networking:** `socket` (TCP & UDP), `http.server`, `socketserver`
@@ -214,7 +214,7 @@ project_TCP-UDP/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 > Requires **Python 3.7+**. No installation needed — only the standard library is used.
 
@@ -261,7 +261,7 @@ Enter a username, then type `start` in the server terminal to begin.
 
 ---
 
-## 🧩 Engineering Challenges & Solutions
+## Engineering Challenges & Solutions
 
 - **Message framing over a TCP stream.** TCP delivers a continuous byte stream with no message boundaries, so two JSON messages can arrive glued together or split apart. *Solution:* newline-delimited framing with a per-connection buffer that extracts complete messages and retains partial ones.
 - **Concurrency & race conditions.** Many client threads read and mutate shared scores and answers simultaneously. *Solution:* a single `threading.Lock` guards every critical section (registry, answers, scoring, broadcasts).
@@ -270,26 +270,13 @@ Enter a username, then type `start` in the server terminal to begin.
 
 ---
 
-## 🔭 Possible Future Enhancements
+## Possible Future Enhancements
 
 - Replace HTTP polling with **WebSockets** for true push-based real-time updates.
 - Add **application-level acknowledgments and retransmission** to the UDP version for reliable delivery without TCP.
 - Explore a **QUIC**-based version combining UDP's speed with TCP-like reliability.
 - Add automated **load/latency benchmarking** and a metrics dashboard.
 - Containerize with **Docker** for reproducible multi-client demos.
-
----
-
-## 👥 Authors & Roles
-
-This was a team project for **CS411 – Computer Networks (Lab 4)** at the **Mediterranean Institute of Technology (MedTech)**, supervised by **Mr. Iheb Hergli**.
-
-| Member | Role | Focus |
-| --- | --- | --- |
-| **Ahmed Hamouda** | **System Architect** | TCP server core, threading model, game-state management, performance optimization |
-| Aymen Saad | Frontend Engineer | Web interface, JavaScript client, real-time UI/UX |
-| Yassine Mtibaa | Protocol Engineer | UDP implementation, message reliability, network testing |
-| Youssef Benmoussa | Quality Assurance | Testing, documentation, performance benchmarking |
 
 ---
 
